@@ -26,7 +26,7 @@ def main():
         '4': '4 - Utgifter och kostnader förädling',
         '5': '5 - Övriga externa rörelseutgifter och kostnader',
         '6': '6 - Övriga externa rörelseutgifter och kostnader',
-        '7': '7- Utgifter och kostnader för personal, avskrivningar mm.',
+        '7': '7 - Utgifter och kostnader för personal, avskrivningar mm.',
         '8': '8 - Finansiella och andra inkomster/intäkter och utgifter/kostnader'
     }
 
@@ -116,7 +116,14 @@ def main():
             cols.append("%0.0f" % float(ver["amount"]))
             cols.append("%s" % ver["vertext"])
             cols.append("%s" % ver["verno"])
-            cols.append("%s" % datetime.datetime.strptime(cols[0], "%Y-%m-%d").strftime("%s"))
+            
+            # Convert the date string to a datetime object
+            date_obj = datetime.datetime.strptime(cols[0], "%Y-%m-%d")
+            # Get the Unix timestamp
+            unix_timestamp = int(date_obj.timestamp())
+            # Append the Unix timestamp to the cols list
+            cols.append(str(unix_timestamp))
+            
             cols.append("%s" % attribute_fnamn)
             if args.debug:
                 print('"' + '","'.join(cols) + '"')
