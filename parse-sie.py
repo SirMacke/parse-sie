@@ -113,7 +113,7 @@ def main():
             cols.append("%s" % account_name)
             cols.append("%s" % kst_name)
             cols.append("%s" % proj_name)
-            cols.append("%0.0f" % float(ver["amount"]))
+            cols.append("%0.2f" % float(ver["amount"]))
             cols.append("%s" % ver["vertext"])
             cols.append("%s" % ver["verno"])
             
